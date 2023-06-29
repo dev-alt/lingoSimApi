@@ -23,7 +23,6 @@ public class Quote
         [BsonElement("language")]
         public string? Language { get; set; }
 
-        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? AuthorId { get; set; }
 

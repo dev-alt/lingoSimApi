@@ -21,12 +21,26 @@ public class QuoteRepository
             new BsonDocument
             {
                 { "from", "author" },
-                { "localField", "AuthorId" },
+                { "localField", "authorId" },
                 { "foreignField", "_id" },
-                { "as", "Author" }
+                { "as", "author" }
             });
 
-        var aggregatePipeline = new[] { lookupPipeline };
+        var unwindPipeline = new BsonDocument("$unwind", "$author");
+
+        var projectionPipeline = new BsonDocument("$project",
+            new BsonDocument
+            {
+                { "_id", 1 },
+                { "text", 1 },
+                { "meaning", 1 },
+                { "explanation", 1 },
+                { "language", 1 },
+                { "author._id", 1 },
+                { "author.name", 1 }
+            });
+
+        var aggregatePipeline = new[] { lookupPipeline, unwindPipeline, projectionPipeline };
 
         return _quoteCollection.Aggregate<Quote>(aggregatePipeline).ToList();
     }

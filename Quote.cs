@@ -19,7 +19,10 @@ public class Quote
         [BsonElement("explanation")]
         public string? Explanation { get; set; }
 
-        [BsonElement("date")]
+        [BsonElement("language")]
+        public string Language { get; set; }
+
+    [BsonElement("date")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime Date { get; set; }
 

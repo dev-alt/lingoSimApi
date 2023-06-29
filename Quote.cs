@@ -23,8 +23,5 @@ public class Quote
         [BsonElement("language")]
         public string? Language { get; set; }
 
-    [BsonElement("date")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-        public DateTime Date { get; set; }
 
 }

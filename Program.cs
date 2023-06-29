@@ -37,7 +37,17 @@ builder.Services.AddScoped<IMongoDatabase>(sp =>
 
 builder.Services.AddScoped<QuoteRepository, QuoteRepository>();
 
+
+
 var app = builder.Build();
+
+// Enable CORS
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+});
 
 // Configure the HTTP request pipeline.
 

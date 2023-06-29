@@ -26,5 +26,6 @@ public class Quote
         [BsonRepresentation(BsonType.ObjectId)]
         public string? AuthorId { get; set; }
 
-
+        [BsonIgnore]
+        public Author? Author { get; set; }
 }

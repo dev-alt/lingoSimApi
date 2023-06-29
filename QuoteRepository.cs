@@ -6,15 +6,29 @@ namespace lingoSimApi;
 public class QuoteRepository
 {
     private readonly IMongoCollection<Quote> _quoteCollection;
+    private readonly IMongoCollection<Author> _authorCollection;
 
     public QuoteRepository(IMongoDatabase database)
     {
         _quoteCollection = database.GetCollection<Quote>("quote");
+        _authorCollection = database.GetCollection<Author>("author");
+
     }
 
     public List<Quote> GetQuotes()
     {
-        return _quoteCollection.Find(_ => true).ToList();
+        var lookupPipeline = new BsonDocument("$lookup",
+            new BsonDocument
+            {
+                { "from", "author" },
+                { "localField", "AuthorId" },
+                { "foreignField", "_id" },
+                { "as", "Author" }
+            });
+
+        var aggregatePipeline = new[] { lookupPipeline };
+
+        return _quoteCollection.Aggregate<Quote>(aggregatePipeline).ToList();
     }
 
     public List<Quote> GetAllPhrases()

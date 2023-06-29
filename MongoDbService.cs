@@ -7,12 +7,15 @@ public class MongoDbService : ICosmosDbService
     private readonly IMongoClient _client;
     private readonly IMongoDatabase _database;
     private readonly IMongoCollection<Quote> _collection;
+    private readonly IMongoCollection<Author> _authorCollection;
 
     public MongoDbService(MongoClient client)
     {
         _client = client;
         _database = _client.GetDatabase("Quotes");
         _collection = _database.GetCollection<Quote>("quote");
+        _authorCollection = _database.GetCollection<Author>("author");
+
     }
 
     public async Task<IReadOnlyList<Quote>> GetQuotes()

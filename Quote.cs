@@ -23,9 +23,4 @@ public class Quote
         [BsonElement("language")]
         public string? Language { get; set; }
 
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? AuthorId { get; set; }
-
-        [BsonIgnore]
-        public Author? Author { get; set; }
 }

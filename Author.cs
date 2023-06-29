@@ -6,14 +6,14 @@ namespace lingoSimApi
     [BsonIgnoreExtraElements]
     public class Author
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Author_Id { get; set; }
+        //[BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //public string? Author_Id { get; set; }
 
-        [BsonElement("name")]
-        public string? Name { get; set; }
+        //[BsonElement("name")]
+        //public string? Name { get; set; }
 
-        [BsonElement("bio")]
-        public string? Bio { get; set; }
+        //[BsonElement("bio")]
+        //public string? Bio { get; set; }
     }
 }

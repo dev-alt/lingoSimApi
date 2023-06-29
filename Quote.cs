@@ -11,6 +11,7 @@ public class Quote
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
+        [BsonElement("text")]
         public string? Text { get; set; }
 
         [BsonElement("meaning")]
@@ -20,7 +21,7 @@ public class Quote
         public string? Explanation { get; set; }
 
         [BsonElement("language")]
-        public string Language { get; set; }
+        public string? Language { get; set; }
 
     [BsonElement("date")]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]

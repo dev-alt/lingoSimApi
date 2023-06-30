@@ -12,6 +12,10 @@
       "type": "secrets",
       "connectionId": "VaultUri",
       "dynamicId": null
+    },
+    "identityapp1": {
+      "type": "identityapp",
+      "connectionId": null
     }
   }
 }

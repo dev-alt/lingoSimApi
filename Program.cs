@@ -10,8 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 
-string keyVaultURL = "https://lingosimsecrets.vault.azure.net/";
-string keyVaultSecretName = "MongoString";
 
 var client = new SecretClient(new Uri(keyVaultURL),
     new DefaultAzureCredential());

@@ -17,9 +17,7 @@ public class MongoDbService : ICosmosDbService
 
     public async Task<IReadOnlyList<Quote>> GetQuotes()
     {
-        var collection = _database.GetCollection<Quote>("quote");
-
-        var quotes = await collection.Find(_ => true).ToListAsync();
+        var quotes = await _collection.Find(_ => true).ToListAsync();
 
         return quotes;
     }

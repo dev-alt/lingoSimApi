@@ -1,8 +1,6 @@
 using lingoSimApi;
 using MongoDB.Driver;
-using System.Configuration;
 using Azure.Security.KeyVault.Secrets;
-using Microsoft.Extensions.DependencyInjection;
 using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);

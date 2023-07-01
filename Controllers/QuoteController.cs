@@ -16,17 +16,12 @@ namespace lingoSimApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Quote>>> GetAllQuotes()
-        {
-            var quotes = await _quoteRepository.GetQuotes();
-            return Ok(quotes);
-        }
-
-        [HttpGet]
         public IActionResult Get()
         {
             var quotes = _quoteRepository.GetQuotes();
             return Ok(quotes);
         }
+
+
     }
 }

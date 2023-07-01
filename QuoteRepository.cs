@@ -21,10 +21,7 @@ public class QuoteRepository
     {
         return _quoteCollection.Find(_ => true).ToList();
     }
-    public Quote GetPhraseById(string id)
-    {
-        return _quoteCollection.Find(p => p.Id == id).FirstOrDefault();
-    }
+
 
     public List<Quote> SearchPhrasesByText(string searchText)
     {

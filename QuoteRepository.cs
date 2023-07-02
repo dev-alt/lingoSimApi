@@ -16,24 +16,26 @@ public class QuoteRepository
     {
         return _quoteCollection.Find(_ => true).ToList();
     }
-
-    public List<Quote> GetAllPhrases()
+    public async Task<IEnumerable<Quote>> GetAllQuotes()
     {
-        return _quoteCollection.Find(_ => true).ToList();
+        return await _quoteCollection.Find(_ => true).ToListAsync();
+    }
+    public async Task<Quote> GetQuoteById(ObjectId id)
+    {
+        var filter = Builders<Quote>.Filter.Eq(q => q.Id, id);
+        return await _quoteCollection.Find(filter).FirstOrDefaultAsync();
     }
 
 
-    public List<Quote> SearchPhrasesByText(string searchText)
+    public async Task<long> GetQuotesCount()
     {
-        var filter = Builders<Quote>.Filter.Regex("text", new BsonRegularExpression(searchText, "i"));
-        return _quoteCollection.Find(filter).ToList();
+        var count = await _quoteCollection.CountDocumentsAsync(_ => true);
+        return count;
     }
-    public Quote GetRandomPhrase(string language)
+    
+    public async Task<Quote> GetQuoteByIndex(int index)
     {
-        var random = new Random();
-        var filter = Builders<Quote>.Filter.Eq("Language", language);
-        var count = _quoteCollection.CountDocuments(filter);
-        var randomIndex = random.Next(0, (int)count);
-        return _quoteCollection.Find(filter).Skip(randomIndex).Limit(1).FirstOrDefault();
+        var quotes = await _quoteCollection.Find(_ => true).Skip(index).Limit(1).ToListAsync();
+        return quotes.FirstOrDefault();
     }
 }

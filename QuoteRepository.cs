@@ -27,15 +27,23 @@ public class QuoteRepository
     }
 
 
-    public async Task<long> GetQuotesCount()
+    public async Task<long> GetQuotesCount(string language = null)
     {
-        var count = await _quoteCollection.CountDocumentsAsync(_ => true);
+        var filterBuilder = Builders<Quote>.Filter;
+        var filter = language != null ? filterBuilder.Eq(q => q.Language, language) : filterBuilder.Empty;
+
+        var count = await _quoteCollection.CountDocumentsAsync(filter);
         return count;
     }
-    
-    public async Task<Quote> GetQuoteByIndex(int index)
+
+    public async Task<Quote> GetQuoteByIndex(int index, string language = null)
     {
-        var quotes = await _quoteCollection.Find(_ => true).Skip(index).Limit(1).ToListAsync();
-        return quotes.FirstOrDefault();
+        var filterBuilder = Builders<Quote>.Filter;
+        var filter = language != null ? filterBuilder.Eq(q => q.Language, language) : filterBuilder.Empty;
+
+        var quotes = await _quoteCollection.Find(filter).ToListAsync();
+        var quote = quotes.Skip(index).FirstOrDefault();
+
+        return quote;
     }
 }

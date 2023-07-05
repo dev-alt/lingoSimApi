@@ -16,18 +16,6 @@ namespace lingoSimApi.Controllers
             _quoteRepository = quoteRepository;
         }
 
-        //[HttpGet("random")]
-        //public async Task<ActionResult<Quote>> GetRandomQuote()
-        //{
-        //    var count = await _quoteRepository.GetQuotesCount();
-        //    var random = new Random();
-        //    var randomIndex = random.Next((int)count);
-        //    var quote = await _quoteRepository.GetQuoteByIndex(randomIndex);
-        //    if (quote == null)
-        //        return NotFound();
-
-        //    return Ok(quote);
-        //}
         [HttpGet("random")]
         public async Task<ActionResult<Quote>> GetRandomQuote(string language = null)
         {

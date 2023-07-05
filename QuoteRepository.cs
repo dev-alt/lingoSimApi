@@ -27,7 +27,7 @@ public class QuoteRepository
     }
 
 
-    public async Task<long> GetQuotesCount(string language = null)
+    public async Task<long> GetQuotesCount(string? language = null)
     {
         var filterBuilder = Builders<Quote>.Filter;
         var filter = language != null ? filterBuilder.Eq(q => q.Language, language) : filterBuilder.Empty;
@@ -36,7 +36,7 @@ public class QuoteRepository
         return count;
     }
 
-    public async Task<Quote> GetQuoteByIndex(int index, string language = null)
+    public async Task<Quote?> GetQuoteByIndex(int index, string? language = null)
     {
         var filterBuilder = Builders<Quote>.Filter;
         var filter = language != null ? filterBuilder.Eq(q => q.Language, language) : filterBuilder.Empty;

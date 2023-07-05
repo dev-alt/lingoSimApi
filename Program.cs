@@ -33,6 +33,7 @@ builder.Services.AddScoped<IMongoDatabase>(sp =>
 });
 
 builder.Services.AddScoped<QuoteRepository, QuoteRepository>();
+builder.Services.AddScoped<AuthorRepository, AuthorRepository>();
 
 
 
